@@ -3,8 +3,8 @@ import colors from "vuetify/es5/util/colors";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "%s - birds",
-    title: "birds",
+    titleTemplate: "Birds",
+    title: "Birds",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -54,17 +54,18 @@ export default {
       dark: true,
       themes: {
         dark: {
+          background: "#282a36",
+          selection: "#44475a",
+          foreground: "#f8f8f2",
+          comment: "#6272a4",
+          cyan: "#8be9fd",
+          green: "#50fa7b",
+          orange: "#ffb86c",
+          pink: "#ff79c6",
+          purple: "#be93f9",
           red: "#ff5555",
           yellow: "#f1fa8c",
-          purple: "#be93f9",
-          pink: "#ff79c6",
-          orange: "#ffb86c",
-          green: "#50fa7b",
-          cyan: "#8be9fd",
           background2: "#383a59",
-          foreground: "#f8f8f2",
-          selection: "#44475a",
-          background: "#282a36",
           grey: "#bcc2cd",
         },
       },
