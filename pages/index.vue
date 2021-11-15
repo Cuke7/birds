@@ -35,7 +35,7 @@
           Il se tient à l'affût sur un point haut, la tête et la queue agitées
           de mouvements nerveux. Lorsqu'un poisson est repéré, il quitte son
           perchoir d'un vol oblique rapide, vient percuter le surface pour se
-          saisir du poisson et regagne son perchoir.
+          saisir du poisson et regagne son perchoir. C'est beau quand même.
         </v-col>
       </v-row>
     </v-col>
