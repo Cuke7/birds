@@ -1,21 +1,14 @@
 <template>
   <v-row justify="center" align="start">
     <v-col cols="12" md="6">
-      <BirdIntro :bird="birdTest"></BirdIntro>
+      <Bird :bird="birdTest"></Bird>
     </v-col>
   </v-row>
 </template>
 
 <script>
 export default {
-  data: () => ({
-    // birdTest: {
-    //   name: "Rougegorge famillier",
-    //   latinName: "Ave Maria",
-    //   pictureUrl: "/kingFisher.jpg",
-    //   intro: "Pater noster",
-    // },
-  }),
+  data: () => ({}),
   computed: {
     birdTest() {
       return this.$store.getters.getBirdData("Rougegorge familier");

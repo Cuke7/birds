@@ -1,17 +1,20 @@
 <template>
   <div class="ma-4">
     <v-row>
-      <v-col cols="auto" class="purple--text text-h4">
+      <v-col cols="auto" class="purple--text text-h4 pb-0">
         {{ bird.name }}
       </v-col>
     </v-row>
-    <v-row justify="start">
-      <v-col cols="auto" class="grey--text text-body-1 font-weight-bold">
+    <v-row justify="start" class="mt-0">
+      <v-col
+        cols="auto"
+        class="grey--text text-body-1 font-weight-bold pb-0 mb-4"
+      >
         {{ bird.latinName }}
       </v-col>
     </v-row>
 
-    <v-row justify="center">
+    <v-row justify="center" class="mt-0">
       <v-col cols="auto">
         <v-card
           color="background2"
@@ -19,19 +22,21 @@
           width="150"
           elevation="10"
         >
-          <v-img src="/kingFisher.jpg" contain width="150" height="150"></v-img>
+          <v-img :src="bird.images[0]" contain width="150" height="150"></v-img>
+        </v-card>
+      </v-col>
+      <v-col cols="auto">
+        <v-card
+          color="background2"
+          class="rounded-xl"
+          width="150"
+          elevation="10"
+        >
+          <v-img :src="bird.images[1]" contain width="150" height="150"></v-img>
         </v-card>
       </v-col>
     </v-row>
 
-    <!-- <div class="text-h5 green--text my-4">Description</div>
-    <div
-      v-for="(p, index) in bird.description"
-      :key="index"
-      class="my-2 text-justify text-body-1"
-    >
-      {{ p }}
-    </div> -->
     <div v-for="(categorie, index) in categories" :key="index">
       <div class="text-h5 green--text my-4">{{ getHeaderText(categorie) }}</div>
       <div
@@ -56,7 +61,7 @@ export default {
       let cleanBird = { ...this.bird };
       delete cleanBird["name"];
       delete cleanBird["latinName"];
-      console.log(cleanBird);
+      delete cleanBird["images"];
       return cleanBird;
     },
     categories() {
