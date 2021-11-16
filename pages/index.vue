@@ -12,14 +12,54 @@
         append-icon="mdi-trash"
       ></v-text-field>
 
-      <div v-for="(searchResult, index) in searchResults" :key="index">
+      <v-col
+        cols="12"
+        v-for="(searchResult, index) in searchResults"
+        :key="index"
+      >
+        <v-sheet min-height="70" class="fill-height" color="transparent">
+          <v-lazy class="fill-height">
+            <div>
+              <v-row align="center">
+                <v-col cols="auto">
+                  <v-avatar size="50">
+                    <v-img :src="searchResult.images[0]" contain> </v-img>
+                  </v-avatar>
+                </v-col>
+                <v-col cols="auto">
+                  {{ searchResult.name }}
+                </v-col>
+              </v-row>
+              <v-divider class="mt-5"></v-divider>
+            </div>
+          </v-lazy>
+        </v-sheet>
+      </v-col>
+
+      <!-- <v-virtual-scroll bench="20" :items="searchResults" item-height="64">
+        <template v-slot:default="{ item }">
+          <v-row align="center">
+            <v-col cols="auto">
+              <v-avatar size="50">
+                <v-img :src="item.images[0]" contain> </v-img>
+              </v-avatar>
+            </v-col>
+            <v-col cols="auto">
+              {{ item.name }}
+            </v-col>
+          </v-row>
+          <v-divider class="mt-5 mx-4"></v-divider>
+        </template>
+      </v-virtual-scroll> -->
+
+      <!-- <div v-for="(searchResult, index) in searchResults" :key="index">
         <v-row
           class="mx-6 my-3 grey--text text-decoration-underline"
           @click="navigateTo(searchResult.name)"
         >
           {{ searchResult.name }}
         </v-row>
-      </div>
+      </div> -->
     </v-col>
   </v-row>
 </template>
@@ -33,7 +73,7 @@ export default {
   },
   data: () => ({
     searchQuery: "",
-    searchResults: [],
+    searchResults: birdData,
   }),
   methods: {
     navigateTo(birdName) {
@@ -60,7 +100,10 @@ export default {
             returnMatchData: true,
           })
           .map((el) => el.item);
-      }
+      } 
+      // else {
+      //   this.searchResults = birdData;
+      // }
     },
   },
 };
