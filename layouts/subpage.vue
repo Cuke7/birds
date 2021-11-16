@@ -2,13 +2,13 @@
   <v-app dark>
     <v-app-bar app color="background">
       <v-btn icon @click="$router.push('/')">
-        <v-icon color="purple"> mdi-arrow-left </v-icon>
+        <v-icon color="green"> mdi-arrow-left </v-icon>
       </v-btn>
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
-        <v-icon color="purple"> mdi-share-variant </v-icon>
+      <v-btn icon @click="share">
+        <v-icon color="green"> mdi-share-variant </v-icon>
       </v-btn>
     </v-app-bar>
     <v-main>
@@ -25,6 +25,25 @@ export default {
     return {
       //
     };
+  },
+  computed: {
+    subtitle() {
+      return this.$store.state.BirdName;
+    },
+  },
+  methods: {
+    share() {
+      if (navigator.share) {
+        navigator
+          .share({
+            title: "Aucellus",
+            text: this.subtitle,
+            url: window.location.href,
+          })
+          .then(() => console.log(this.subtitle))
+          .catch((error) => console.log("Error sharing", error));
+      }
+    },
   },
 };
 </script>

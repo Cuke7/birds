@@ -14,6 +14,7 @@ export default {
   }),
   computed: {
     bird() {
+      this.$store.commit("updatBirdName", this.slug);
       return this.$store.getters.getBirdData(this.slug);
     },
   },
