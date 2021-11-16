@@ -38,13 +38,17 @@
     </v-row>
 
     <div v-for="(categorie, index) in categories" :key="index">
-      <div class="text-h5 green--text my-4">{{ getHeaderText(categorie) }}</div>
-      <div
-        v-for="(p, index) in bird[categorie]"
-        :key="index"
-        class="my-2 text-justify text-body-1"
-      >
-        {{ p }}
+      <div v-if="bird[categorie] != null">
+        <div class="text-h5 green--text mt-8 mb-2">
+          {{ getHeaderText(categorie) }}
+        </div>
+        <div
+          v-for="(p, index) in bird[categorie]"
+          :key="index"
+          class="my-2 text-justify text-body-1"
+        >
+          {{ p }}
+        </div>
       </div>
     </div>
   </div>

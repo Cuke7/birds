@@ -12,7 +12,12 @@
       ></v-text-field>
 
       <div v-for="(searchResult, index) in searchResults" :key="index">
-        {{ searchResult.name }}
+        <v-row
+          class="mx-6 my-3  grey--text text-decoration-underline"
+          @click="navigateTo(searchResult.name)"
+        >
+          {{ searchResult.name }}
+        </v-row>
       </div>
     </v-col>
   </v-row>
@@ -26,6 +31,11 @@ export default {
     searchQuery: "",
     searchResults: [],
   }),
+  methods: {
+    navigateTo(birdName) {
+      this.$router.push("/" + birdName);
+    },
+  },
   computed: {
     birdTest() {
       return this.$store.getters.getBirdData("Rougegorge familier");
@@ -39,11 +49,13 @@ export default {
   },
   watch: {
     searchQuery(val) {
-      this.searchResults = this.searcher
-        .search(val, {
-          returnMatchData: true,
-        })
-        .map((el) => el.item);
+      if (val.length > 2) {
+        this.searchResults = this.searcher
+          .search(val, {
+            returnMatchData: true,
+          })
+          .map((el) => el.item);
+      }
     },
   },
 };
