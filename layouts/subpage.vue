@@ -7,7 +7,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon @click="">
+      <v-btn icon>
         <v-icon color="purple"> mdi-share-variant </v-icon>
       </v-btn>
     </v-app-bar>
