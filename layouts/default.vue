@@ -1,8 +1,5 @@
 <template>
   <v-app dark>
-    <!-- <v-app-bar app color="background2">
-      <v-toolbar-title class="purple--text">Birds! ❤️</v-toolbar-title>
-    </v-app-bar> -->
     <v-main>
       <v-container>
         <Nuxt />

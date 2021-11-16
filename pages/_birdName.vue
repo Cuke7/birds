@@ -8,12 +8,12 @@
 
 <script>
 export default {
+  layout: "subpage",
   data: () => ({
     //
   }),
   computed: {
     bird() {
-      console.log(this.slug);
       return this.$store.getters.getBirdData(this.slug);
     },
   },
