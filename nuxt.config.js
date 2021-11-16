@@ -35,8 +35,6 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
-    "@nuxtjs/axios",
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
   ],
@@ -45,9 +43,19 @@ export default {
   axios: {},
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
+
   pwa: {
     manifest: {
-      lang: "en",
+      name: "Aucellus",
+      lang: "fr",
+      theme_color: "#282a36",
+      background_color: "#282a36",
+      short_name: "Aucellus",
+      display: "standalone",
+    },
+    icon: {
+      source: "/birdLogo.png",
+      fileName: "birdLogo.png",
     },
   },
 
@@ -78,4 +86,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  target: "static",
 };
