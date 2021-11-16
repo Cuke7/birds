@@ -3,8 +3,8 @@ import colors from "vuetify/es5/util/colors";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "Birds",
-    title: "Birds",
+    titleTemplate: "Avis",
+    title: "Avis",
     meta: [
       { charset: "utf-8" },
       {
@@ -46,11 +46,11 @@ export default {
 
   pwa: {
     manifest: {
-      name: "Aucellus",
+      name: "Avis",
       lang: "fr",
       theme_color: "#282a36",
       background_color: "#282a36",
-      short_name: "Aucellus",
+      short_name: "Avis",
       display: "standalone",
     },
     icon: {

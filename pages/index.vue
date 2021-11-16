@@ -9,11 +9,12 @@
         v-model="searchQuery"
         autocomplete="off"
         class="ma-6"
+        append-icon="mdi-trash"
       ></v-text-field>
 
       <div v-for="(searchResult, index) in searchResults" :key="index">
         <v-row
-          class="mx-6 my-3  grey--text text-decoration-underline"
+          class="mx-6 my-3 grey--text text-decoration-underline"
           @click="navigateTo(searchResult.name)"
         >
           {{ searchResult.name }}
@@ -27,12 +28,16 @@
 import birdData from "~/static/birdData.json";
 const { Searcher } = require("fast-fuzzy");
 export default {
+  mounted() {
+    this.searchQuery = this.$store.state.searchQuery;
+  },
   data: () => ({
     searchQuery: "",
     searchResults: [],
   }),
   methods: {
     navigateTo(birdName) {
+      this.$store.commit("updateSearchQuery", this.searchQuery);
       this.$router.push("/" + birdName);
     },
   },

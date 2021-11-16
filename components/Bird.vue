@@ -14,9 +14,22 @@
       </v-col>
     </v-row>
 
-    <v-row justify="center" class="mt-0">
-      <v-col cols="auto">
-        <v-card
+    <!-- <v-row justify="center" class="mt-0">
+      <v-col cols="auto"> -->
+    <div style="display: flex; overflow-x: auto" class="mt-4">
+      <v-card
+        v-for="(imageUrl, index) in bird.images"
+        :key="index"
+        color="background2"
+        class="rounded-xl mr-4"
+        width="150"
+        elevation="10"
+        @click="openDialog(imageUrl)"
+      >
+        <v-img :src="imageUrl" contain width="150" height="150" />
+      </v-card>
+    </div>
+    <!-- <v-card
           color="background2"
           class="rounded-xl"
           width="150"
@@ -35,7 +48,7 @@
           <v-img :src="bird.images[1]" contain width="150" height="150"></v-img>
         </v-card>
       </v-col>
-    </v-row>
+    </v-row> -->
 
     <div v-for="(categorie, index) in categories" :key="index">
       <div v-if="bird[categorie] != null">
@@ -51,6 +64,12 @@
         </div>
       </div>
     </div>
+
+    <v-dialog v-model="photoDialog" max-width="290">
+      <v-card class="rounded-xl">
+        <v-img :src="activeImageUrl"> </v-img>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -58,7 +77,8 @@
 export default {
   props: ["bird"],
   data: () => ({
-    //
+    photoDialog: false,
+    activeImageUrl: "",
   }),
   computed: {
     cleanBird() {
@@ -73,6 +93,10 @@ export default {
     },
   },
   methods: {
+    openDialog(imageUrl) {
+      this.activeImageUrl = imageUrl;
+      this.photoDialog = true;
+    },
     getHeaderText(key) {
       if (key == "description") {
         return "Description";
@@ -101,4 +125,28 @@ export default {
 h4 {
   word-break: break-word;
 }
+
+/* width */
+::-webkit-scrollbar {
+  /* width: 10px;
+  height: 5px; */
+  display: none;
+}
+
+/* Track */
+/* ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+} */
+
+/* Handle */
+/* ::-webkit-scrollbar-thumb {
+  background: #9c27b0;
+  border-radius: 10px;
+} */
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+  background: #4CAF50;
+} */
 </style>

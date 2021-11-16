@@ -2,6 +2,7 @@ import birdData from "~/static/birdData.json";
 
 export const state = () => ({
   birdData: birdData,
+  searchQuery: "",
 });
 
 export const getters = {
@@ -11,7 +12,7 @@ export const getters = {
 };
 
 export const mutations = {
-  //   changeSubtitle(state, value) {
-  //     state.subtitle = value;
-  //   },
+  updateSearchQuery(state, value) {
+    state.searchQuery = value;
+  },
 };
