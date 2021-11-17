@@ -21,34 +21,14 @@
         v-for="(imageUrl, index) in bird.images"
         :key="index"
         color="background2"
-        class="rounded-xl mr-4"
+        class="rounded-xl mr-4 mb-2"
         width="150"
         elevation="10"
-        @click="openDialog(imageUrl)"
+        @click="openDialog(imageUrl.hdLink)"
       >
-        <v-img :src="imageUrl" contain width="150" height="150" />
+        <v-img :src="imageUrl.sdLink" contain width="150" height="150" />
       </v-card>
     </div>
-    <!-- <v-card
-          color="background2"
-          class="rounded-xl"
-          width="150"
-          elevation="10"
-        >
-          <v-img :src="bird.images[0]" contain width="150" height="150"></v-img>
-        </v-card>
-      </v-col>
-      <v-col cols="auto">
-        <v-card
-          color="background2"
-          class="rounded-xl"
-          width="150"
-          elevation="10"
-        >
-          <v-img :src="bird.images[1]" contain width="150" height="150"></v-img>
-        </v-card>
-      </v-col>
-    </v-row> -->
 
     <div v-for="(categorie, index) in categories" :key="index">
       <div v-if="bird[categorie] != null">
@@ -65,10 +45,8 @@
       </div>
     </div>
 
-    <v-dialog v-model="photoDialog" max-width="290">
-      <v-card class="rounded-xl">
-        <v-img :src="activeImageUrl"> </v-img>
-      </v-card>
+    <v-dialog v-model="photoDialog" max-width="600">
+      <v-img :src="activeImageUrl" contain class="rounded-xl"> </v-img>
     </v-dialog>
   </div>
 </template>
@@ -86,6 +64,7 @@ export default {
       delete cleanBird["name"];
       delete cleanBird["latinName"];
       delete cleanBird["images"];
+      delete cleanBird["key"];
       return cleanBird;
     },
     categories() {
@@ -128,25 +107,25 @@ h4 {
 
 /* width */
 ::-webkit-scrollbar {
-  /* width: 10px;
-  height: 5px; */
-  display: none;
+  width: 10px;
+  height: 7px;
+  /* display: none; */
 }
 
 /* Track */
-/* ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
-} */
+}
 
 /* Handle */
-/* ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: #9c27b0;
   border-radius: 10px;
-} */
+}
 
 /* Handle on hover */
-/* ::-webkit-scrollbar-thumb:hover {
-  background: #4CAF50;
-} */
+::-webkit-scrollbar-thumb:hover {
+  background: #4caf50;
+}
 </style>
