@@ -54,11 +54,6 @@ const { Searcher } = require("fast-fuzzy");
 export default {
   mounted() {
     this.searchQuery = this.$store.state.searchQuery;
-    for (const bird of birdData) {
-      if (!bird.images[0]) {
-        console.log(bird.name);
-      }
-    }
   },
   data: () => ({
     searchQuery: "",
