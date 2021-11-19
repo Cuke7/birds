@@ -1,7 +1,7 @@
 <template>
   <div class="ma-4">
     <v-row align="center">
-      <v-col cols="9" class="purple--text text-h5 pb-0">
+      <v-col cols="9" class="purple--text text-h4 pb-0">
         {{ bird.name }}
       </v-col>
     </v-row>
@@ -30,20 +30,39 @@
       </v-card>
     </div>
 
-    <div class="mt-8">
-      <v-btn
-        fab
-        v-if="!isPlaying"
-        @click="play()"
-        color="purple"
-        :disabled="playerIsReady"
-      >
-        <v-icon> mdi-play </v-icon>
-      </v-btn>
-      <v-btn fab v-if="isPlaying" @click="pause()" color="purple">
-        <v-icon> mdi-pause </v-icon>
-      </v-btn>
-    </div>
+    <div class="text-h5 green--text my-2">Chants</div>
+
+    <v-row align="center" class="mt-1" justify="space-between">
+      <v-col cols="3">
+        <div>
+          <v-btn
+            fab
+            v-if="!isPlaying"
+            @click="play()"
+            color="purple"
+            :disabled="playerIsReady"
+          >
+            <v-icon> mdi-play </v-icon>
+          </v-btn>
+          <v-btn fab v-if="isPlaying" @click="pause()" color="purple">
+            <v-icon> mdi-pause </v-icon>
+          </v-btn>
+        </div>
+      </v-col>
+      <v-col cols="9">
+        <v-chip-group v-model="selectedSong" column>
+          <v-chip
+            v-for="(song, index) in bird.songs"
+            :key="index"
+            filter
+            color="purple"
+            @click="loadSong(index)"
+          >
+            Chant n°{{ index + 1 }}
+          </v-chip>
+        </v-chip-group>
+      </v-col>
+    </v-row>
 
     <audio
       hidden
@@ -56,15 +75,15 @@
       <source :src="bird.songs[0]" />
     </audio>
 
-    <div v-for="(categorie, index) in categories" :key="index">
-      <div v-if="bird[categorie] != null">
-        <div class="text-h5 green--text mt-8 mb-2">
+    <div v-for="(categorie, index) in categories" :key="index" class="mt-1">
+      <div v-if="bird[categorie] != null" class="mb-8">
+        <div class="text-h5 green--text mb-2">
           {{ getHeaderText(categorie) }}
         </div>
         <div
           v-for="(p, index) in bird[categorie]"
           :key="index"
-          class="my-2 text-justify text-body-1"
+          class="mb-2 text-justify text-body-1"
         >
           {{ p }}
         </div>
@@ -85,6 +104,7 @@ export default {
     activeImageUrl: "",
     isPlaying: false,
     playerIsReady: false,
+    selectedSong: 1,
   }),
   computed: {
     cleanBird() {
@@ -93,6 +113,7 @@ export default {
       delete cleanBird["latinName"];
       delete cleanBird["images"];
       delete cleanBird["key"];
+      delete cleanBird["songs"];
       return cleanBird;
     },
     categories() {
@@ -100,6 +121,11 @@ export default {
     },
   },
   methods: {
+    loadSong(index) {
+      this.playerIsReady = false;
+      this.isPlaying = false;
+      this.$refs.audio.src = this.bird.songs[index];
+    },
     player_is_ready() {
       console.log("Player is ready!");
       this.playerIsready = true;
