@@ -104,7 +104,7 @@ export default {
     activeImageUrl: "",
     isPlaying: false,
     playerIsReady: false,
-    selectedSong: 1,
+    selectedSong: 0,
   }),
   computed: {
     cleanBird() {
