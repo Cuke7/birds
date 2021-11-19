@@ -1,11 +1,11 @@
 <template>
   <div class="ma-4">
-    <v-row>
-      <v-col cols="auto" class="purple--text text-h4 pb-0">
+    <v-row align="center">
+      <v-col cols="9" class="purple--text text-h5 pb-0">
         {{ bird.name }}
       </v-col>
     </v-row>
-    <v-row justify="start" class="mt-0">
+    <v-row justify="start" class="mt-4">
       <v-col
         cols="auto"
         class="grey--text text-body-1 font-weight-bold pb-0 mb-4"
@@ -29,6 +29,32 @@
         <v-img :src="imageUrl.sdLink" contain width="150" height="150" />
       </v-card>
     </div>
+
+    <div class="mt-8">
+      <v-btn
+        fab
+        v-if="!isPlaying"
+        @click="play()"
+        color="purple"
+        :disabled="playerIsReady"
+      >
+        <v-icon> mdi-play </v-icon>
+      </v-btn>
+      <v-btn fab v-if="isPlaying" @click="pause()" color="purple">
+        <v-icon> mdi-pause </v-icon>
+      </v-btn>
+    </div>
+
+    <audio
+      hidden
+      ref="audio"
+      controls
+      preload="auto"
+      @canplay="player_is_ready()"
+      @ended="isPlaying = false"
+    >
+      <source :src="bird.songs[0]" />
+    </audio>
 
     <div v-for="(categorie, index) in categories" :key="index">
       <div v-if="bird[categorie] != null">
@@ -57,6 +83,8 @@ export default {
   data: () => ({
     photoDialog: false,
     activeImageUrl: "",
+    isPlaying: false,
+    playerIsReady: false,
   }),
   computed: {
     cleanBird() {
@@ -72,6 +100,18 @@ export default {
     },
   },
   methods: {
+    player_is_ready() {
+      console.log("Player is ready!");
+      this.playerIsready = true;
+    },
+    play() {
+      this.isPlaying = true;
+      this.$refs.audio.play();
+    },
+    pause() {
+      this.isPlaying = false;
+      this.$refs.audio.pause();
+    },
     openDialog(imageUrl) {
       this.activeImageUrl = imageUrl;
       this.photoDialog = true;
