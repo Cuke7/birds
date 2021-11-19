@@ -32,7 +32,7 @@
 
     <div class="text-h5 green--text my-2">Chants</div>
 
-    <v-row align="center" class="mt-1" justify="space-between">
+    <v-row align="center" class="my-2" justify="space-between">
       <v-col cols="3">
         <div>
           <v-btn
@@ -75,9 +75,9 @@
       <source :src="bird.songs[0]" />
     </audio>
 
-    <div v-for="(categorie, index) in categories" :key="index" class="mt-1">
+    <div v-for="(categorie, index) in categories" :key="index">
       <div v-if="bird[categorie] != null" class="mb-8">
-        <div class="text-h5 green--text mb-2">
+        <div class="text-h5 green--text my-2">
           {{ getHeaderText(categorie) }}
         </div>
         <div

@@ -10,7 +10,7 @@
         append-icon="mdi-trash"
       ></v-text-field>
 
-      <v-virtual-scroll :items="searchResults" itemHeight="75">
+      <!-- <v-virtual-scroll :items="searchResults" itemHeight="75">
         <template v-slot:default="{ item }">
           <v-list-item :key="item.key" @click="navigateTo(item.name)">
             <v-list-item-action>
@@ -29,7 +29,25 @@
           </v-list-item>
           <v-divider></v-divider>
         </template>
-      </v-virtual-scroll>
+      </v-virtual-scroll> -->
+      <div v-for="(searchResult, index) in searchResults" :key="index">
+        <v-list-item @click="navigateTo(searchResult.name)">
+          <v-list-item-action>
+            <v-avatar size="50" v-if="searchResult.images[0]">
+              <v-img :src="searchResult.images[0].sdLink" contain> </v-img>
+            </v-avatar>
+            <v-avatar v-else color="purple">
+              {{ searchResult.name[0] }}
+            </v-avatar>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ searchResult.name }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+      </div>
 
       <v-btn
         fab
@@ -57,13 +75,14 @@ export default {
   },
   data: () => ({
     searchQuery: "",
-    searchResults: birdData,
+    searchResults: [],
     fab: false,
   }),
   methods: {
     navigateTo(birdName) {
       this.$store.commit("updateSearchQuery", this.searchQuery);
-      this.$router.push("/fiche?birdName=" + encodeURI(birdName));
+      // this.$router.push("/fiche?birdName=" + encodeURI(birdName));
+      this.$router.push("/" + encodeURI(birdName));
     },
     onScroll(e) {
       if (typeof window === "undefined") return;
@@ -84,19 +103,16 @@ export default {
   },
   watch: {
     searchQuery(val) {
-      if (val.length > 2) {
-        this.searchResults = this.searcher
-          .search(val, {
-            returnMatchData: true,
-          })
-          .map((el) => el.item);
+      if (val.length > 0) {
+        this.searchResults = [];
+        let temp = this.searcher.search(val, {
+          returnMatchData: true,
+        });
+
+        for (let i = 0; i < 20; i++) {
+          this.searchResults.push(temp[i].item);
+        }
       }
-      if (val.length == 0) {
-        this.searchResults = birdData;
-      }
-      // else {
-      //   this.searchResults = birdData;
-      // }
     },
   },
 };
