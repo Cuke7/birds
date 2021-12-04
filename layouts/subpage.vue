@@ -10,19 +10,19 @@
       <v-btn icon @click="share">
         <v-icon color="green"> mdi-share-variant </v-icon>
       </v-btn>
-      <!-- <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
       <v-app-bar-nav-icon
         color="green"
         @click.stop="drawer = !drawer"
-      ></v-app-bar-nav-icon> -->
+      ></v-app-bar-nav-icon>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" right absolute temporary id="drawer">
+    <v-navigation-drawer v-model="drawer" temporary fixed right id="drawer">
       <v-list nav dense>
         <v-list-item-group active-class="deep-purple--text text--accent-4">
           <v-list-item v-for="(item, index) in drawerItems" :key="index">
             <v-list-item-title
-              @click="scroll()"
+              @click="scroll(item)"
               class="green--text text-body-1"
               >{{ getHeaderText(item) }}</v-list-item-title
             >
@@ -56,8 +56,8 @@ export default {
   },
   methods: {
     scroll(item) {
-      console.log(this.$root.$children[2].$children[0]);
-      this.$vuetify.goTo(this.$refs[item]);
+      console.log(item);
+      this.$vuetify.goTo(document.getElementById(item));
     },
     getHeaderText(key) {
       if (key == "description") {

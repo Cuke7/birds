@@ -83,7 +83,7 @@
 
     <div v-for="(categorie, index) in categories" :key="index">
       <div v-if="bird[categorie] != null" class="mb-8">
-        <div class="text-h5 green--text my-2" :ref="categorie">
+        <div class="text-h5 green--text my-2" :id="categorie">
           {{ getHeaderText(categorie) }}
         </div>
         <div

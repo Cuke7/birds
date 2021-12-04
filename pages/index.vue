@@ -109,7 +109,9 @@ export default {
           returnMatchData: true,
         });
 
-        for (let i = 0; i < 20; i++) {
+        let maxLength = temp.length < 20 ? temp.length : 20;
+
+        for (let i = 0; i < maxLength; i++) {
           this.searchResults.push(temp[i].item);
         }
       }
