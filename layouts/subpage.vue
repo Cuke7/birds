@@ -7,13 +7,33 @@
 
       <v-spacer></v-spacer>
 
-      <!-- <v-btn icon @click="share">
+      <v-btn icon @click="share">
         <v-icon color="green"> mdi-share-variant </v-icon>
-      </v-btn> -->
+      </v-btn>
+      <!-- <v-spacer></v-spacer>
+      <v-app-bar-nav-icon
+        color="green"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon> -->
     </v-app-bar>
+
+    <v-navigation-drawer v-model="drawer" right absolute temporary id="drawer">
+      <v-list nav dense>
+        <v-list-item-group active-class="deep-purple--text text--accent-4">
+          <v-list-item v-for="(item, index) in drawerItems" :key="index">
+            <v-list-item-title
+              @click="scroll()"
+              class="green--text text-body-1"
+              >{{ getHeaderText(item) }}</v-list-item-title
+            >
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+
     <v-main>
       <v-container>
-        <Nuxt />
+        <Nuxt ref="nuxt" />
       </v-container>
     </v-main>
   </v-app>
@@ -23,15 +43,42 @@
 export default {
   data() {
     return {
-      //
+      drawer: false,
     };
   },
   computed: {
+    drawerItems() {
+      return this.$store.state.drawerItems;
+    },
     subtitle() {
       return this.$store.state.BirdName;
     },
   },
   methods: {
+    scroll(item) {
+      console.log(this.$root.$children[2].$children[0]);
+      this.$vuetify.goTo(this.$refs[item]);
+    },
+    getHeaderText(key) {
+      if (key == "description") {
+        return "Description";
+      }
+      if (key == "box_habitat") {
+        return "Habitat";
+      }
+      if (key == "box_comportement") {
+        return "Comportement";
+      }
+      if (key == "box_regime") {
+        return "Régime";
+      }
+      if (key == "box_reproduction") {
+        return "Reproduction";
+      }
+      if (key == "box_vol") {
+        return "Vol";
+      }
+    },
     share() {
       if (navigator.share) {
         navigator
@@ -50,6 +97,10 @@ export default {
 
 <style scoped>
 .v-application {
+  background-color: #282a36;
+}
+
+#drawer {
   background-color: #282a36;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="ma-4">
     <v-row align="center">
-      <v-col cols="9" class="purple--text text-h4 pb-0">
+      <v-col cols="12" class="purple--text text-h4 pb-0">
         {{ bird.name }}
       </v-col>
     </v-row>
@@ -32,7 +32,12 @@
 
     <div class="text-h5 green--text my-2">Chants</div>
 
-    <v-row align="center" class="my-2" justify="space-between">
+    <v-row
+      align="center"
+      class="my-2"
+      justify="space-between"
+      v-if="bird.songs"
+    >
       <v-col cols="3">
         <div>
           <v-btn
@@ -71,13 +76,14 @@
       preload="auto"
       @canplay="player_is_ready()"
       @ended="isPlaying = false"
+      v-if="bird.songs"
     >
       <source :src="bird.songs[0]" />
     </audio>
 
     <div v-for="(categorie, index) in categories" :key="index">
       <div v-if="bird[categorie] != null" class="mb-8">
-        <div class="text-h5 green--text my-2">
+        <div class="text-h5 green--text my-2" :ref="categorie">
           {{ getHeaderText(categorie) }}
         </div>
         <div
@@ -117,7 +123,9 @@ export default {
       return cleanBird;
     },
     categories() {
-      return Object.keys(this.cleanBird);
+      let categories = Object.keys(this.cleanBird);
+      this.$store.commit("updateDrawer", categories);
+      return categories;
     },
   },
   methods: {

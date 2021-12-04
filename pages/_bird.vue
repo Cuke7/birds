@@ -1,12 +1,14 @@
 <template>
   <v-row justify="center" align="start">
     <v-col cols="12" md="6">
-      <Bird v-if="bird" :bird="bird"></Bird>
+      <Bird v-if="bird" :bird="bird" ref="birds"></Bird>
     </v-col>
   </v-row>
 </template>
 
 <script>
+import birdData from "~/static/birdData.json";
+
 export default {
   layout: "subpage",
   async asyncData({ params }) {
@@ -24,7 +26,8 @@ export default {
       // );
 
       this.$store.commit("updatBirdName", this.birdName);
-      return this.$store.getters.getBirdData(decodeURI(this.birdName));
+      return birdData.find((item) => item.name === this.birdName);
+      //return this.$store.getters.getBirdData(decodeURI(this.birdName));
     },
   },
 };

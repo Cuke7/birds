@@ -4,6 +4,7 @@ export const state = () => ({
   birdData: birdData,
   searchQuery: "",
   BirdName: "",
+  drawerItems: [],
 });
 
 export const getters = {
@@ -18,5 +19,8 @@ export const mutations = {
   },
   updatBirdName(state, value) {
     state.BirdName = value;
+  },
+  updateDrawer(state, value) {
+    state.drawerItems = value;
   },
 };
