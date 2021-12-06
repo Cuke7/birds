@@ -10,6 +10,10 @@
         append-icon="mdi-trash"
       ></v-text-field>
 
+      <div class="ma-6">
+        Projet pédagogique, données issues du site https://www.oiseaux.net/.
+      </div>
+
       <!-- <v-virtual-scroll :items="searchResults" itemHeight="75">
         <template v-slot:default="{ item }">
           <v-list-item :key="item.key" @click="navigateTo(item.name)">

@@ -56,6 +56,7 @@ export default {
   },
   methods: {
     scroll(item) {
+      this.drawer = false;
       console.log(item);
       this.$vuetify.goTo(document.getElementById(item));
     },
