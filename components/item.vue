@@ -1,6 +1,14 @@
 <template>
   <v-card class="pa-0" height="100%">
-    <v-img :src="scope.data.item.images[0].hdLink" max-height="80%" contain></v-img>
+    <v-img
+      :src="
+        switchHD
+          ? scope.data.item.images[0].hdLink
+          : scope.data.item.images[0].sdLink
+      "
+      contain
+      max-height="80%"
+    ></v-img>
 
     <v-row justify="center">
       <v-col cols="auto">
@@ -14,7 +22,7 @@
 
 <script>
 export default {
-  props: ["scope"],
+  props: ["scope", "switchHD"],
 };
 </script>
 

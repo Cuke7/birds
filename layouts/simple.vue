@@ -8,7 +8,7 @@
       <v-spacer></v-spacer>
     </v-app-bar>
     <v-main>
-      <v-container fluid style="height: 100vh">
+      <v-container>
         <Nuxt />
       </v-container>
     </v-main>

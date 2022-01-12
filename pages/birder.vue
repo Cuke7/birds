@@ -1,23 +1,30 @@
 <template>
-  <v-layout fill-height>
-    <v-row justify="center" align="start">
-      <v-col cols="12" md="6">
-        <client-only>
-          <Tinder
-            ref="tinder"
-            key-name="id"
-            :queue.sync="queue"
-            :offset-y="10"
-            @submit="onSubmit"
-          >
-            <template slot-scope="scope">
-              <item :scope="scope"></item>
-            </template>
-          </Tinder>
-        </client-only>
-      </v-col>
-    </v-row>
-  </v-layout>
+  <v-row>
+    <v-col>
+      <v-row justify="center">
+        <v-col style="margin-left: 50px" class="pl-0">
+          <v-switch v-model="switchHD" label="Photos HD"></v-switch>
+        </v-col>
+      </v-row>
+      <v-row justify="center" align="start">
+        <v-col cols="auto">
+          <client-only>
+            <Tinder
+              ref="tinder"
+              key-name="id"
+              :queue.sync="queue"
+              :offset-y="10"
+              @submit="onSubmit"
+            >
+              <template slot-scope="scope">
+                <item :scope="scope" :switchHD="switchHD"></item>
+              </template>
+            </Tinder>
+          </client-only>
+        </v-col>
+      </v-row>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -28,6 +35,7 @@ export default {
   layout: "simple",
   components: { Tinder },
   data: () => ({
+    switchHD: true,
     queue: [],
     offset: 0,
     items: [],
@@ -85,9 +93,11 @@ body {
   right: 0;
   top: 100px;
   margin: auto;
-  width: calc(100% - 20px);
+  margin-right: 70px;
+  margin-left: 70px;
+  width: calc(100% - 140px);
   height: 50%;
-  min-width: 300px;
-  max-width: 355px;
+  /* min-width: 300px; */
+  /* max-width: 355px; */
 }
 </style>
