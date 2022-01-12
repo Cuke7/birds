@@ -66,6 +66,14 @@
       >
         <v-icon>mdi-chevron-up</v-icon>
       </v-btn>
+      <div class="ma-6">
+        <v-card class="pa-4 text-body-2" color="background2">
+          <div class="my-4 text-center">Match avec des oiseaux de ton pays</div>
+          <div class="text-center my-4">
+            <v-btn color="purple" nuxtLink to="/birder"> Commencer </v-btn>
+          </div>
+        </v-card>
+      </div>
     </v-col>
   </v-row>
 </template>

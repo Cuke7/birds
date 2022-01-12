@@ -1,21 +1,93 @@
 <template>
-  <v-row justify="center" align="start">
-    <v-col cols="12" md="6"> </v-col>
-  </v-row>
+  <v-layout fill-height>
+    <v-row justify="center" align="start">
+      <v-col cols="12" md="6">
+        <client-only>
+          <Tinder
+            ref="tinder"
+            key-name="id"
+            :queue.sync="queue"
+            :offset-y="10"
+            @submit="onSubmit"
+          >
+            <template slot-scope="scope">
+              <item :scope="scope"></item>
+            </template>
+          </Tinder>
+        </client-only>
+      </v-col>
+    </v-row>
+  </v-layout>
 </template>
 
 <script>
 import birdData from "~/static/birdData.json";
+import Tinder from "vue-tinder";
 
 export default {
-  mounted() {
-    //
-  },
+  layout: "simple",
+  components: { Tinder },
   data: () => ({
-    //
+    queue: [],
+    offset: 0,
+    items: [],
   }),
+  created() {
+    this.items = this.shuffle(
+      birdData.filter((item) => item.images.length > 0)
+    );
+    for (let i = 0; i < this.items.length; i++) {
+      this.queue.push({ item: this.items[i], id: this.offset });
+      this.offset++;
+    }
+  },
   methods: {
-    //
+    onSubmit({ item }) {
+      if (this.queue.length < 1) {
+        for (let i = 0; i < this.items.length; i++) {
+          this.queue.push({ item: this.items[i], id: this.offset });
+          this.offset++;
+        }
+      }
+    },
+    shuffle(array) {
+      let currentIndex = array.length,
+        randomIndex;
+
+      // While there remain elements to shuffle...
+      while (currentIndex != 0) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex],
+          array[currentIndex],
+        ];
+      }
+
+      return array;
+    },
   },
 };
 </script>
+
+<style>
+body {
+  overflow: hidden; /* Hide scrollbars */
+}
+
+#app .vue-tinder {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 100px;
+  margin: auto;
+  width: calc(100% - 20px);
+  height: 50%;
+  min-width: 300px;
+  max-width: 355px;
+}
+</style>
