@@ -13,6 +13,7 @@
     "core-js": "^3.15.1",
     "fast-fuzzy": "^1.10.10",
     "nuxt": "^2.15.7",
+    "vue-tinder": "^2.0.3",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {
