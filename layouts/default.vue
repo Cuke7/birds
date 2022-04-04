@@ -5,6 +5,9 @@
         <Nuxt />
       </v-container>
     </v-main>
+    <v-footer app>
+      Projet pédagogique, données issues du site https://www.oiseaux.net/.
+    </v-footer>
   </v-app>
 </template>
 

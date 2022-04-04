@@ -10,10 +10,6 @@
         append-icon="mdi-trash"
       ></v-text-field>
 
-      <div class="ma-6">
-        Projet pédagogique, données issues du site https://www.oiseaux.net/.
-      </div>
-
       <!-- <v-virtual-scroll :items="searchResults" itemHeight="75">
         <template v-slot:default="{ item }">
           <v-list-item :key="item.key" @click="navigateTo(item.name)">
@@ -66,14 +62,14 @@
       >
         <v-icon>mdi-chevron-up</v-icon>
       </v-btn>
-      <div class="ma-6">
+      <!-- <div class="ma-6">
         <v-card class="pa-4 text-body-2" color="background2">
           <div class="my-4 text-center">Match avec des oiseaux de ton pays</div>
           <div class="text-center my-4">
             <v-btn color="purple" nuxtLink to="/birder"> Commencer </v-btn>
           </div>
         </v-card>
-      </div>
+      </div> -->
     </v-col>
   </v-row>
 </template>

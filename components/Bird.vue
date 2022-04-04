@@ -124,7 +124,14 @@ export default {
     },
     categories() {
       let categories = Object.keys(this.cleanBird);
-      this.$store.commit("updateDrawer", categories);
+      let cleanCategories = [];
+      for (const category of categories) {
+        if (this.cleanBird[category] != null) {
+          cleanCategories.push(category);
+        }
+      }
+      this.$store.commit("updateDrawer", cleanCategories);
+      console.log(cleanCategories);
       return categories;
     },
   },
