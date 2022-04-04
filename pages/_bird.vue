@@ -8,7 +8,6 @@
 
 <script>
 import birdData from "~/static/birdData.json";
-
 export default {
   layout: "subpage",
   async asyncData({ params }) {
@@ -24,7 +23,6 @@ export default {
       // return this.$store.getters.getBirdData(
       //   decodeURI(this.$route.query.birdName)
       // );
-
       this.$store.commit("updatBirdName", this.birdName);
       return birdData.find((item) => item.name === this.birdName);
       //return this.$store.getters.getBirdData(decodeURI(this.birdName));
