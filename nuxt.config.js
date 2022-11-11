@@ -49,7 +49,7 @@ export default {
       theme_color: "#282a36",
       background_color: "#282a36",
       short_name: "Aucellus",
-      display: "standalone",
+      display: "fullscreen",
     },
     icon: {
       source: "/birdLogo.png",
